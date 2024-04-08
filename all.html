@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Brewery list{% endblock %}
+
+{% block content %}
+<div class="container cont-body overflow-auto">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Address</th>
+      <th scope="col">State</th>
+      <th scope="col">Telephone</th>
+      <th scope="col">Website</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for brewery in data %}
+      <tr>
+        <th scope="row">{{ brewery["name"] }}</th>
+        <td>{{ brewery["brewery_type"] }}</td>
+        {% if brewery["address_1"] %}
+          <td>{{ brewery["address_1"] }}, {{ brewery["city"] }} </td>
+        {% else %}
+          <td>{{ brewery["city"] }}</td>
+        {% endif %}
+        <td>{{ brewery["state_province"] }}, {{ brewery["country"] }}</td>
+        {% if brewery["phone"] %}
+          <td>{{ brewery["phone"] }}</td>
+        {% else %}
+          <td>Unknown</td>
+        {% endif %}
+        {% if brewery["website_url"] %}
+          <td><a href="{{ brewery['website_url'] }}">{{ brewery["website_url"] }}</a></td>
+        {% else %}
+          <td>Unknown</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

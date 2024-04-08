@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div class="container cont-body-res overflow-auto">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{data[0]["name"]}}</h5>
+      <p class="card-text">Brewery type: {{data[0]["brewery_type"]}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% if data[0]["address_1"] %}
+        <li class="list-group-item">{{data[0]["city"]}} - {{data[0]["address_1"]}}</li>
+      {% else %}
+        <li class="list-group-item">{{data[0]["city"]}}</li>
+      {% endif %}
+      <li class="list-group-item">{{data[0]["state_province"]}}, {{data[0]["country"]}}</li>
+      {% if data[0]["phone"] %}
+        <li class="list-group-item">Telephone: {{data[0]["phone"]}}</li>
+      {% endif %}
+    </ul>
+    {% if data[0]["website_url"] %}
+      <div class="card-body">
+        <a href="{{data[0]['website_url']}}" class="card-link">Website</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
